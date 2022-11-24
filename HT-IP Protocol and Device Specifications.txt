@@ -65,13 +65,19 @@ Router:
 	
 	A function of the router is for a device to ask for an ip (This is not dynamic), when a packet is directed to IP address 0, the router returns an ip address in the first data byte. On the inside of the router, behind the front panel, there is another input panel, each line corresponds to a port (First line = Leftmost port), this is the data that is returned to the port.
 	
-Switch (Lightweight router):
+	Warning: The router will lag your game when you have 3+ in the world, this is why I made the switch.
+	
+Switch (Light weight router):
+	The switch is a light weigth version of the router, it's subnet mask is 0xf0 and the IP directly corresponds to the port to output to.
+	
 	There are 16 ports on the front and back, the front is the input, back is output. The upper nibble of the target IP will select which port to output to.
 	Switches do not have the function to return an ip address.
+	
 	The first port has a light version of the color.
 	
 Subswitch:
+	The subswitch is used with the switch, it is used to expand a port on the router to 16 ports.
+	
 	The subswitch has 16 input ports and 16 output ports on the front. One input and one output port on the back. Any data going to front ports will be outputted to the back port. When data is received on the back port, the lower nibble of the target IP will select the port to output to.
 	
-	The subswitch is used in combination with the subswitch.
 	The first port has a light version of the color.
