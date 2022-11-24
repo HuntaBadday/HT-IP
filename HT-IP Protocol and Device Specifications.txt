@@ -1,0 +1,75 @@
+HT-IP Protocol:
+
+Data Link:
+	Each packet of data is 34 bits long.
+	The packet starts with a start bit, data bits and a stop bit, one bit is sent every tick.
+	
+	Packet arrangement:
+	------------------
+	| SB | Data | SB |
+	------------------
+	
+	1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1
+	1: Start/Stop Bit
+	X: Data bits
+	
+Data:
+	The data is composed of 4 bytes, IP Source, IP Target, and 16 bits of data.
+	
+	MSB                                   LSB
+	V                                     V
+	---------------------------------------
+	| Data | Data | IP Source | IP Target |
+	---------------------------------------
+	^                                     ^
+	First bit to be sent                  Last bit to be sent
+	
+	
+================================================================
+
+HT-IP Devices:
+	Defaults across devices:
+		I/O Ports:
+			Green: RX
+			Red:   TX
+
+Interface:
+	----------------------------
+	| ----------    ---------- |
+	| |DDDDDDDD|    |DDDDDDDD| |
+	| ----------    ---------- |
+	| |DDDDDDDD|    |DDDDDDDD| |
+	| ----------    ---------- |
+	| |SSSSSSSS|    |SSSSSSSS|R|
+	| ----------    ---------- |
+	| |TTTTTTTT|B   |TTTTTTTT|C|
+	| ----------    ---------- |
+	----------------------------
+	   ^^^^^^^^      ^^^^^^^^
+	 Data to send  Received Data
+	
+	D: Data
+	S: Source IP
+	T: Target IP
+	
+	B: Send
+	R: Data received flag
+	C: Clear data received flag
+    
+Router:
+	On the rear of the router there are 8 ports, these are the I/O ports, these ports can connect to a device or another router.
+	
+	On the front are 3 sections of 16 layers (Use paint to input data to front panel), the first section is the IP, second is subnet mask and the last is to select which I/O port to transmit the data.
+	
+	If a layer doesn't match the received data the next layer will try to match. A layer is skipped if no I/O port is selected, this can be useful for a default output port by painting the last layer, when all the other layers don't match, this one will be used. To output to a port no matter the IP, leave the subnet mask empty.
+	
+	A function of the router is for a device to ask for an ip (This is not dynamic), when a packet is directed to IP address 0, the router returns an ip address in the first data byte. On the inside of the router, behind the front panel, there is another input panel, each line corresponds to a port (First line = Leftmost port), this is the data that is returned to the port.
+	
+Switch (Lightweight router):
+	There are 16 ports on the front and back, the front is the input, back is output. The upper nibble of the target IP will select which port to output to.
+	Switches do not have the function to return an ip address.
+	
+Subswitch:
+	The subswitch has 16 input ports and 16 output ports on the front. One input and one output port on the back. Any data going to front ports will be outputted to the back port. When data is received on the back port, the lower nibble of the target IP will select the port to output to.
+	
+	The subswitch is used in combination with the subswitch.
