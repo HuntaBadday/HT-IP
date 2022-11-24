@@ -68,8 +68,10 @@ Router:
 Switch (Lightweight router):
 	There are 16 ports on the front and back, the front is the input, back is output. The upper nibble of the target IP will select which port to output to.
 	Switches do not have the function to return an ip address.
+	The first port has a light version of the color.
 	
 Subswitch:
 	The subswitch has 16 input ports and 16 output ports on the front. One input and one output port on the back. Any data going to front ports will be outputted to the back port. When data is received on the back port, the lower nibble of the target IP will select the port to output to.
 	
 	The subswitch is used in combination with the subswitch.
+	The first port has a light version of the color.
