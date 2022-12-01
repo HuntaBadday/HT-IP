@@ -1,5 +1,7 @@
-HT-IP Protocol:
+Created by HuntaBadday
+Message HuntaBadday#7114 on discord for help.
 
+HT-IP Protocol:
 Data Link:
 	Each packet of data is 34 bits long.
 	The packet starts with a start bit, data bits and a stop bit, one bit is sent every tick.
